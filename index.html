@@ -47,9 +47,19 @@
     top: 0; height: 760px;
     background:
       linear-gradient(90deg, rgba(2,10,28,0.88) 0%, rgba(2,10,28,0.6) 36%, rgba(2,10,28,0.08) 66%, rgba(2,10,28,0) 100%),
-      url("img/pillars-of-creation.webp") right center / cover no-repeat;
+      url("img/pillars-of-creation.webp") right top / cover no-repeat;
     -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
     mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+  }
+  @media (min-width: 1600px) {
+    /* very wide screens: keep the image to a centred band so the pillars sit behind the content, not far off to the right */
+    .hero-bg {
+      left: 50%; right: auto; width: 1600px; transform: translateX(-50%);
+      -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%), linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
+      -webkit-mask-composite: source-in;
+      mask-image: linear-gradient(to bottom, #000 72%, transparent 100%), linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
+      mask-composite: intersect;
+    }
   }
   .foot-bg {
     bottom: 0; height: 620px;
