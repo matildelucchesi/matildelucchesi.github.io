@@ -215,6 +215,7 @@
   .project.has-shot .flow .node { flex: 1 1 0; min-width: 0; }
   .project.has-shot .flow .link { flex: 0 0 150px; height: auto; margin: 0; border-left: 0; align-self: center; border-top: 2px dashed var(--signal); }
   .project.has-shot .flow .link span { left: 6px; right: 6px; top: auto; bottom: 8px; text-align: center; white-space: normal; line-height: 1.25; }
+  @media (min-width: 821px) { .project.has-shot .flow.four .link { flex-basis: 110px; } } /* four blocks: shorter links leave room for the labels */
   .project > * { min-width: 0; }
   @media (max-width: 820px) {
     .project.has-shot, .project.featured.has-shot { grid-template-columns: 1fr; }
@@ -298,6 +299,39 @@
             <img src="img/moonrizon-mission-planner.png" width="1775" height="861" alt="Moonrizon Mission Planner: a date picker asking when you want to land, next to a 3D Moon showing sunlight on that day and the Apollo 11, 12, 14 and Luna 9 sites">
           </div>
         </figure>
+      </article>
+
+      <article class="project has-shot" data-tags="space web">
+        <div>
+          <div class="meta mono"><span>Digital twin</span><span>Spacecraft operations</span><span>Personal project</span></div>
+          <h3 class="with-logo"><span class="logo dark" aria-hidden="true"><svg viewBox="0 0 40 40" width="36" height="36"><rect x="15" y="15" width="10" height="10" rx="1.5" fill="oklch(0.52 0.09 235)"/><rect x="3" y="17" width="10" height="6" fill="none" stroke="oklch(0.85 0.13 195)" stroke-width="1.5"/><rect x="27" y="17" width="10" height="6" fill="none" stroke="oklch(0.85 0.13 195)" stroke-width="1.5"/><path d="M13 20 H15 M25 20 H27" stroke="oklch(0.85 0.13 195)" stroke-width="1.5"/><path d="M8 33 L14 33 L17 28 L21 36 L24 31 L32 31" fill="none" stroke="oklch(0.83 0.14 80)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>CubeSat power digital twin</span></h3>
+          <p>Will the battery hold? A digital twin of a CubeSat's electrical power system that stays in sync with telemetry, spots faults before the limits trip and forecasts when the spacecraft would fall into safe mode.</p>
+          <ul>
+            <li>Physics core: SGP4 orbit from TLEs, eclipses, solar array power and battery state of charge over days.</li>
+            <li>Kalman filters estimate what no sensor measures: state of charge, real battery capacity, array health, hidden loads.</li>
+            <li>Fault detection with CUSUM and a random-forest classifier: 78 % of injected faults caught with 1 % false alarms, against 18 % for classic limit checking.</li>
+            <li>Monte Carlo prognosis of the time to safe mode, and a what-if study of the transmitter duty cycle to choose the corrective action.</li>
+            <li>LLM operator assistant that explains each alarm, using the twin as a tool so it never invents numbers.</li>
+          </ul>
+          <div class="tags"><span>Python</span><span>NumPy</span><span>scikit-learn</span><span>FastAPI</span><span>Angular</span><span>Three.js</span></div>
+          <div class="links"><a href="https://github.com/matildelucchesi/cubesat-power-twin">View the code on GitHub →</a></div>
+        </div>
+        <figure class="shot">
+          <div class="win">
+            <div class="bar"><i></i><i></i><i></i><span class="mono">cubesat-power-twin · health monitoring</span></div>
+            <img src="img/cubesat-twin-health.webp" width="1400" height="800" loading="lazy" alt="Health monitoring view of the CubeSat power digital twin: an injected solar array degradation, the alarms of four detection methods side by side, and the twin's estimates of state of charge, battery capacity and array factor compared with the truth">
+          </div>
+        </figure>
+        <div class="flow four" aria-label="How the digital twin works">
+          <div class="cap mono">How it works</div>
+          <div class="node"><b>Telemetry</b><small>voltage, current, power</small></div>
+          <div class="link"><span>Kalman filters</span></div>
+          <div class="node hot"><b>Synchronised twin</b><small>orbit, array, battery</small></div>
+          <div class="link"><span>CUSUM + classifier</span></div>
+          <div class="node"><b>Alarm and diagnosis</b><small>which subsystem, which fault</small></div>
+          <div class="link"><span>Monte Carlo</span></div>
+          <div class="node"><b>Prognosis and action</b><small>time to safe mode</small></div>
+        </div>
       </article>
 
       <article class="project" data-tags="web">
@@ -384,6 +418,7 @@
         <dt class="mono">Front-end</dt><dd>Angular, React, CesiumJS</dd>
         <dt class="mono">Back-end</dt><dd>Spring Boot, Django, FastAPI, Flask, REST, OpenAPI</dd>
         <dt class="mono">Data</dt><dd>PostgreSQL, MongoDB</dd>
+        <dt class="mono">Modelling</dt><dd>Kalman filtering, Monte Carlo simulation, scikit-learn</dd>
         <dt class="mono">Delivery</dt><dd>Docker, Git, software testing</dd>
         <dt class="mono">Spoken</dt><dd>Italian (native), English (C1), Spanish (A2)</dd>
       </dl>
